@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import {ref} from 'vue';
 import TheClientsHeadItem from '@/components/TheClientsHeadItem.vue'
 import TheClientsCard from '@/components/TheClientsCard.vue'
 
 import listhead from '@/composables/listHead.ts'
 import { useClientStore } from '@/stores/useStoreClient.ts'
 import { loadClients } from '@/api/apiClients.ts'
+import ModalNewClient from "@/components/ModalNewClient.vue";
 
 const clientStore = useClientStore();
 const loadUsers = async () => (clientStore.clients.value = await loadClients());
+const showForm = ref<boolean>(false);
+const closeForm = ():void=>{
+  showForm.value = false
+}
 loadUsers();
 </script>
 
@@ -26,13 +32,20 @@ loadUsers();
             :user="item"
           />
         </ul>
-        <button class="clients__button">
-          <img src="../assets/addclint.svg" alt="Добавить клиента" />
-          Добавить Клиента
-        </button>
+
       </div>
+      <button @click="showForm = !showForm" class="clients__button">
+        <img src="../assets/addclint.svg" alt="Добавить клиента" />
+        Добавить Клиента
+      </button>
     </div>
   </section>
+  <Teleport to="body">
+    <ModalNewClient
+      :show="showForm"
+      @cancel:closeForm="closeForm"
+    />
+  </Teleport>
 </template>
 
 <style scoped>
