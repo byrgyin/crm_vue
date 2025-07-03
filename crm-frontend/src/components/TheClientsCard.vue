@@ -3,6 +3,8 @@ import type {User} from '@/types/types.ts'
 import {parseHours, parseYear} from "@/composables/helpers.ts";
 import {ref} from 'vue'
 import TheClientCardContacnts from "@/components/TheClientCardContacnts.vue";
+import { useClientStore } from '@/stores/useStoreClient.ts'
+
 const props = defineProps<{
   user:User
 }>();
@@ -10,6 +12,13 @@ const yearCreated = ref<string>(parseYear(props.user.createdAt));
 const hoursCreated = ref<string>(parseHours(props.user.createdAt));
 const yearUpdate = ref<string>(parseYear(props.user.updatedAt));
 const hoursUpdate = ref<string>(parseHours(props.user.updatedAt));
+const clientStore = useClientStore();
+
+const clickRemove = (event:HTMLButtonElement):void=>{
+  clientStore.idBTN = String(event.target.getAttribute('data-id'));
+  clientStore.showDeleteForm = true;
+  console.log(clientStore.idBTN);
+}
 </script>
 
 <template>
@@ -30,8 +39,7 @@ const hoursUpdate = ref<string>(parseHours(props.user.updatedAt));
   </div>
   <div class="clients__card-item clients__card-item-actions">
     <button :data-id="user.id" class="clients__card-button"><img src="../assets/edit.svg" alt="изменить">Изменить</button>
-    <button :data-id="user.id" class="clients__card-button"><img src="../assets/delete.svg" alt="изменить">Удалить</button>
-    <button class="clients__card-button"><img src="../assets/copy.svg" alt="изменить">Изменить</button>
+    <button @click="clickRemove" :data-id="user.id" class="clients__card-button"><img src="../assets/delete.svg" alt="изменить">Удалить</button>
   </div>
 </li>
 </template>

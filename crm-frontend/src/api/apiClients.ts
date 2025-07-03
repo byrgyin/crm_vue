@@ -1,4 +1,5 @@
 import type {User} from '@/types/types.ts'
+
 /* METHOD GET */
 export const searchClient = async (value:string):Promise<void> =>{
   const opt = {
@@ -20,8 +21,7 @@ export const loadClients = async ():Promise<User[]| undefined>=>{
   try {
     const res = await fetch('http://localhost:3000/api/clients');
     if(res.ok){
-      const data:User[] = await res.json();
-      return data;
+      return await res.json();
     }
   } catch (e){
     console.log(e)
@@ -29,21 +29,21 @@ export const loadClients = async ():Promise<User[]| undefined>=>{
 }
 /* END METHOD GET */
 /* METHOD POST */
-export const addClient = async (obj):Promise<void>=>{
+export const addClient = async (obj:User):Promise<void>=>{
   const opt = {
     method:'POST',
     body: JSON.stringify(obj),
     headers:{'Content-Type':'application/json'}
   }
   try {
-    const res = await fetch('http://localhost:3000/api/clients',opt)
+    await fetch('http://localhost:3000/api/clients',opt);
   } catch (e){
     console.log(e)
   }
 }
 /* END METHOD POST */
 /* METHOD PATCH */
-export const updateClient = async (obj,id:string):Promise<void>=>{
+export const updateClient = async (obj:User,id:string):Promise<void>=>{
   const opt = {
     method:'PATCH',
     body: JSON.stringify(obj),

@@ -2,21 +2,27 @@
 import {ref} from 'vue'
 import LabelInput from '@/components/formComponents/LabelInput.vue'
 import ContactInfo from "@/components/formComponents/ContactInfo.vue";
-import type {Contact} from "@/types/types.ts";
+import {addClient} from "@/api/apiClients.ts"
+import type {CommonEmits, Contact} from "@/types/types.ts";
 
 defineProps<{
   show: boolean,
 }>();
 
-const emit = defineEmits<{
-  (e:'cancel:closeForm'):void;
-}>();
-
+const emit = defineEmits<CommonEmits>();
 const count = ref<number>(0);
 const surname = ref<string>('');
 const name = ref<string>('');
 const lastname = ref<string>('');
 const contactsArr = ref<Contact[]>([]);
+
+const clearArg = ():void=>{
+  surname.value = '';
+  name.value = '';
+  lastname.value = '';
+  contactsArr.value = [];
+  count.value = 0;
+}
 
 const incrementCount = ():void=>{
   if(count.value <= 9){
@@ -30,26 +36,30 @@ const decrementCount = ():void=>{
 }
 const cancelForm = ():void=>{
   emit('cancel:closeForm');
+  clearArg();
 }
 const updateContact = (contact: Contact & { index: number }): void => {
   contactsArr.value[contact.index] = { type: contact.type, value: contact.value };
 };
 
-const cancelStandartEventForm = (event:Event):void=>{
+const submitForm = (event:Event):void=>{
   event.preventDefault();
   const obj = {
     name: name.value,
     surname:surname.value,
-    lastname:lastname.value,
+    lastName:lastname.value,
     contacts:contactsArr.value
   }
-  console.log(obj);
+  addClient(obj);
+  clearArg();
+  cancelForm();
+  emit('submit:submitForm');
 };
 </script>
 
 <template>
   <div v-if="show" class="modal">
-    <form action="#" @submit.prevent="cancelStandartEventForm"  class="modal__form modal-new__form">
+    <form action="#" @submit.prevent="submitForm"  class="modal__form modal-new__form">
       <button @click="cancelForm" class="modal__close" type="button"></button>
       <div class="modal__form-title">Новый клиент</div>
       <LabelInput v-model:input-value="surname" id="surname" title="Фамилия" type="text" placeholder="Фамилия" :required="true" />

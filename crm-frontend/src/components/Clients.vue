@@ -7,14 +7,25 @@ import listhead from '@/composables/listHead.ts'
 import { useClientStore } from '@/stores/useStoreClient.ts'
 import { loadClients } from '@/api/apiClients.ts'
 import ModalNewClient from "@/components/ModalNewClient.vue";
+import ModalDeleteClient from "@/components/ModalDeleteClient.vue";
 
 const clientStore = useClientStore();
+
 const loadUsers = async () => (clientStore.clients.value = await loadClients());
 const showForm = ref<boolean>(false);
+
 const closeForm = ():void=>{
   showForm.value = false
+  clientStore.showDeleteForm = false
 }
+/* ОБСУДИ ЭТОТ МОМЕНТ С НЕЙРОНКОЙ*/
+const updateClients = ():void => {
+  setTimeout(loadUsers,100)
+  clientStore.showDeleteForm = false
+}
+/* ОБСУДИ ЭТОТ МОМЕНТ С НЕЙРОНКОЙ*/
 loadUsers();
+
 </script>
 
 <template>
@@ -44,6 +55,12 @@ loadUsers();
     <ModalNewClient
       :show="showForm"
       @cancel:closeForm="closeForm"
+      @submit:submitForm="updateClients"
+    />
+    <ModalDeleteClient
+      :show="clientStore.showDeleteForm"
+      @cancel:closeForm="closeForm"
+      @submit:submitForm="updateClients"
     />
   </Teleport>
 </template>

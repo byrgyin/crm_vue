@@ -24,3 +24,4 @@ export const parseHours = (str:string):string=>{
   }
   return (`${hours}:${minutes}`);
 }
+
