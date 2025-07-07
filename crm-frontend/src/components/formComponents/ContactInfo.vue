@@ -4,6 +4,7 @@ import type {Contact} from "@/types/types.ts";
 
 const props = defineProps<{
   index: number;
+
 }>();
 const emit = defineEmits<{
   (e:'cancel:removeInfoItem'):void;
@@ -28,13 +29,13 @@ const inputChange = ():void=>{
   <li class="form-contacts__item">
     <div class="form-contacts__item-wrap">
       <select @change="inputChange" v-model.trim="contacts.type" name="choose-cotcants"
-        id="choose-cotcants" class="form-contacts__select" required="">
+        id="choose-cotcants" class="form-contacts__select">
         <option value="" disabled selected>Выберите тип</option>
-        <option value="Телефон" selected>Телефон</option>
-        <option value="Email">Email</option>
-        <option value="Facebook">Facebook</option>
-        <option value="Vk">Vk</option>
-        <option value="Другое">Другое</option>
+        <option value="телефон" selected>Телефон</option>
+        <option value="email">Email</option>
+        <option value="facebook">Facebook</option>
+        <option value="vk">Vk</option>
+        <option value="другое">Другое</option>
       </select>
     </div>
     <input @change="inputChange" v-model.trim="contacts.value" id="info" class="form-contacts__input" type="text" required>

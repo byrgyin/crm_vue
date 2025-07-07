@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type HeadInfo from '@/types/types.ts'
+import type {HeadInfo} from '@/types/types.ts'
 import arrow from '../assets/arrow.svg'
 defineProps<{
   headItem: HeadInfo,

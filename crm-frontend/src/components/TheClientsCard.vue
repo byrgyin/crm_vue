@@ -14,11 +14,16 @@ const yearUpdate = ref<string>(parseYear(props.user.updatedAt));
 const hoursUpdate = ref<string>(parseHours(props.user.updatedAt));
 const clientStore = useClientStore();
 
-const clickRemove = (event:HTMLButtonElement):void=>{
-  clientStore.idBTN = String(event.target.getAttribute('data-id'));
+const clickRemove = ():void=>{
+  clientStore.idBTN = props.user.id as string;
   clientStore.showDeleteForm = true;
-  console.log(clientStore.idBTN);
 }
+const openEditModal = ():void => {
+  clientStore.idBTN = props.user.id as string;
+  clientStore.showEditForm = true;
+  clientStore.editUserCard = props.user;
+}
+
 </script>
 
 <template>
@@ -38,7 +43,7 @@ const clickRemove = (event:HTMLButtonElement):void=>{
     <span v-else>Конакты не указаны</span>
   </div>
   <div class="clients__card-item clients__card-item-actions">
-    <button :data-id="user.id" class="clients__card-button"><img src="../assets/edit.svg" alt="изменить">Изменить</button>
+    <button @click="openEditModal" :data-id="user.id" class="clients__card-button"><img src="../assets/edit.svg" alt="изменить">Изменить</button>
     <button @click="clickRemove" :data-id="user.id" class="clients__card-button"><img src="../assets/delete.svg" alt="изменить">Удалить</button>
   </div>
 </li>

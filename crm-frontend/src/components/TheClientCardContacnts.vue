@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type {Contact} from '@/types/types.ts'
-defineProps<{
+const props = defineProps<{
   contacts:Contact[] | undefined,
 }>();
 </script>

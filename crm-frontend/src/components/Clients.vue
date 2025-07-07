@@ -6,8 +6,9 @@ import TheClientsCard from '@/components/TheClientsCard.vue'
 import listhead from '@/composables/listHead.ts'
 import { useClientStore } from '@/stores/useStoreClient.ts'
 import { loadClients } from '@/api/apiClients.ts'
-import ModalNewClient from "@/components/ModalNewClient.vue";
-import ModalDeleteClient from "@/components/ModalDeleteClient.vue";
+import ModalNewClient from "@/components/Modals/ModalNewClient.vue";
+import ModalDeleteClient from "@/components/Modals/ModalDeleteClient.vue";
+import ModalEditClient from "@/components/Modals/ModalEditClient.vue";
 
 const clientStore = useClientStore();
 
@@ -61,6 +62,9 @@ loadUsers();
       :show="clientStore.showDeleteForm"
       @cancel:closeForm="closeForm"
       @submit:submitForm="updateClients"
+    />
+    <ModalEditClient
+      :show="clientStore.showEditForm"
     />
   </Teleport>
 </template>
