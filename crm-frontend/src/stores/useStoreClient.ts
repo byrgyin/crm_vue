@@ -4,6 +4,7 @@ import type {User} from '@/types/types.ts'
 
 export const useClientStore = defineStore('client',()=>{
   const clients = ref<User[]>([]);
+  const resultSearchClients = ref<User[]>([]);
   const editUserCard = ref<User>();
   const idBTN = ref<string>('');
   const showDeleteForm = ref<boolean>(false);
@@ -17,6 +18,7 @@ export const useClientStore = defineStore('client',()=>{
     idBTN,
     showDeleteForm,
     showEditForm,
-    editUserCard
+    editUserCard,
+    resultSearchClients
   }
 });

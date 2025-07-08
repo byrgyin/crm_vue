@@ -1,16 +1,16 @@
 import type {User} from '@/types/types.ts'
 
 /* METHOD GET */
-export const searchClient = async (value:string):Promise<void> =>{
+export const searchClient = async (value:string):Promise<User[]> =>{
   const opt = {
     method:'GET'
   }
   try {
     const res = await fetch(`http://localhost:3000/api/clients?search=${value}`,opt)
     if(res.ok){
-      const data = await res.json();
-      console.log(data)
+      return await res.json();
     }
+    return [];
   }
   catch (e){
     console.log(e)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from 'vue';
+import {ref,watch} from 'vue';
 import TheClientsHeadItem from '@/components/TheClientsHeadItem.vue'
 import TheClientsCard from '@/components/TheClientsCard.vue'
 
@@ -37,7 +37,14 @@ loadUsers();
         <ul class="clients__head-list">
           <the-clients-head-item v-for="item in listhead" :key="item.title" :head-item="item" />
         </ul>
-        <ul class="clients__cards">
+        <ul class="clients__cards" v-if="clientStore.resultSearchClients.length !== 0">
+          <TheClientsCard
+            v-for="item in clientStore.resultSearchClients"
+            :key="item.id"
+            :user="item"
+          />
+        </ul>
+        <ul class="clients__cards" v-else>
           <TheClientsCard
             v-for="item in clientStore.clients.value"
             :key="item.id"
@@ -65,6 +72,7 @@ loadUsers();
     />
     <ModalEditClient
       :show="clientStore.showEditForm"
+      @submit:submitForm="updateClients"
     />
   </Teleport>
 </template>

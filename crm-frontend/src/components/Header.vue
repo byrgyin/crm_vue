@@ -1,5 +1,18 @@
 <script setup lang="ts">
-import logo from '../assets/logo.svg'
+import {ref} from 'vue';
+import {searchClient} from '@/api/apiClients.ts';
+import {useClientStore} from "@/stores/useStoreClient.ts";
+import logo from '../assets/logo.svg';
+
+const inputSearch = ref<string>('');
+const clientStore = useClientStore();
+const searchInput = async (): Promise<void> => {
+  try {
+    clientStore.resultSearchClients = await searchClient(inputSearch.value);
+  } catch (e) {
+    console.error('Search failed:', e);
+  }
+};
 </script>
 
 <template>
@@ -10,7 +23,7 @@ import logo from '../assets/logo.svg'
       </a>
       <form action="#" class="header__form">
         <label for="search" style="display: none"></label>
-        <input type="search" name="search" id="search" placeholder="Fill your query" class="header__input">
+        <input @change="searchInput" v-model.trim="inputSearch" type="search" name="search" id="search" placeholder="Fill your query" class="header__input">
       </form>
     </div>
   </header>
