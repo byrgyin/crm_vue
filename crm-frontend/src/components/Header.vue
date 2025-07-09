@@ -21,7 +21,7 @@ const searchInput = async (): Promise<void> => {
       <a href="/crm_vue/crm-frontend/public" class="header__link">
         <img :src="logo" alt="crm_logo">
       </a>
-      <form action="#" class="header__form">
+      <form action="#" class="header__form" @submit.prevent="searchInput">
         <label for="search" style="display: none"></label>
         <input @change="searchInput" v-model.trim="inputSearch" type="search" name="search" id="search" placeholder="Fill your query" class="header__input">
       </form>

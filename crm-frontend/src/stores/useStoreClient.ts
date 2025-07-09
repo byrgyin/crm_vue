@@ -9,16 +9,26 @@ export const useClientStore = defineStore('client',()=>{
   const idBTN = ref<string>('');
   const showDeleteForm = ref<boolean>(false);
   const showEditForm = ref<boolean>(false);
-  // const addClient = (arr: User) => {
-  //   clients.value = arr;
-  //   return clients.value;
-  // };
+
+  const sortArray = computed(() => {
+    clients.value.sort((a,b)=>{
+      if(a.surname < b.surname) {
+        return -1
+      }
+      if(a.surname > b.surname) {
+        return 1;
+      }
+      return 0;
+    })
+  });
+
   return{
     clients,
     idBTN,
     showDeleteForm,
     showEditForm,
     editUserCard,
-    resultSearchClients
+    resultSearchClients,
+    sortArray
   }
 });

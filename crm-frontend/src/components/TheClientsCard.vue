@@ -29,7 +29,7 @@ const openEditModal = ():void => {
 <template>
 <li class="clients__card">
   <div class="clients__card-item clients__card-item-id">{{user.id}}</div>
-  <div class="clients__card-item clients__card-item-fio">{{user.name}} {{user.surname}} {{user.lastName}}</div>
+  <div class="clients__card-item clients__card-item-fio">{{user.surname}} {{user.name}} {{user.lastName}}</div>
   <div class="clients__card-item clients__card-item-dt-create">
     <span>{{yearCreated}}</span> <span>{{hoursCreated}}</span>
   </div>
