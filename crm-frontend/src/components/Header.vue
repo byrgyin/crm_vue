@@ -8,7 +8,11 @@ const inputSearch = ref<string>('');
 const clientStore = useClientStore();
 const searchInput = async (): Promise<void> => {
   try {
-    clientStore.resultSearchClients = await searchClient(inputSearch.value);
+    if(inputSearch.value){
+      clientStore.resultSearchClients = await searchClient(inputSearch.value);
+    } else {
+      clientStore.resultSearchClients = []
+    }
   } catch (e) {
     console.error('Search failed:', e);
   }

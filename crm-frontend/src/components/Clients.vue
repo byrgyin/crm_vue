@@ -12,7 +12,10 @@ import ModalEditClient from "@/components/Modals/ModalEditClient.vue";
 
 const clientStore = useClientStore();
 
-const loadUsers = async () => (clientStore.clients.value = await loadClients());
+const loadUsers = async () => {
+  clientStore.clients.value = await loadClients();
+};
+
 const showForm = ref<boolean>(false);
 
 const closeForm = ():void=>{
@@ -37,17 +40,24 @@ loadUsers();
         <ul class="clients__head-list">
           <the-clients-head-item v-for="item in listhead" :key="item.title" :head-item="item" />
         </ul>
-        <ul class="clients__cards" v-if="clientStore.resultSearchClients.length !== 0">
+        <ul class="clients__cards resultSearchClients" v-if="clientStore.resultSearchClients.length !== 0">
           <TheClientsCard
-            v-for="item in clientStore.resultSearchClients"
-            :key="item.id"
+            v-for="(item,index) in clientStore.resultSearchClients"
+            :key="index"
             :user="item"
           />
         </ul>
-        <ul class="clients__cards" v-else>
+        <ul class="clients__cards sortedArray">
           <TheClientsCard
-            v-for="item in clientStore.clients.value"
-            :key="item.id"
+            v-for="(item,index)  in clientStore.helpArr"
+            :key="index"
+            :user="item"
+          />
+        </ul>
+        <ul class="clients__cards DEFAULT" >
+          <TheClientsCard
+            v-for="(item,index) in clientStore.clients.value"
+            :key="index"
             :user="item"
           />
         </ul>

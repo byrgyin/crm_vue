@@ -6,29 +6,17 @@ import {useClientStore} from "@/stores/useStoreClient.ts";
 const props = defineProps<{
   headItem: HeadInfo,
 }>();
+const clientStore = useClientStore();
 
 const sortItems = (event:Event): void => {
   const typeButton = props.headItem.typeButton;
   document.querySelectorAll('.clients__item-button').forEach(button => {
     button.classList.remove('clients__item-button--active');
-  })
-  event.target?.classList.add('clients__item-button--active');
-  switch (typeButton) {
-    case 'id':
-      console.log('id');
-      break;
-    case 'fio':
-      console.log('fio');
-      break;
-    case 'date':
-      console.log('date');
-      break;
-    case 'last_modify':
-      console.log('last_modify');
-      break;
-    default:
-      break;
-  }
+  });
+  (event.target as HTMLElement)?.classList.add('clients__item-button--active');
+  clientStore.sortType = typeButton as 'id' | 'fio' | 'date' | 'last_modify' | '';
+  clientStore.helpArr.value = clientStore.clients.value
+  console.log(clientStore.sortedArray)
 }
 </script>
 
