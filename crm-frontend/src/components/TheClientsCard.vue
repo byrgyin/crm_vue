@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import type {User} from '@/types/types.ts'
 import {parseHours, parseYear} from "@/composables/helpers.ts";
-import {ref} from 'vue'
+import {computed} from 'vue'
 import TheClientCardContacnts from "@/components/TheClientCardContacnts.vue";
 import { useClientStore } from '@/stores/useStoreClient.ts'
 
 const props = defineProps<{
   user:User
 }>();
-const yearCreated = ref<string>(parseYear(props.user.createdAt));
-const hoursCreated = ref<string>(parseHours(props.user.createdAt));
-const yearUpdate = ref<string>(parseYear(props.user.updatedAt));
-const hoursUpdate = ref<string>(parseHours(props.user.updatedAt));
+const yearCreated = computed(() => parseYear(props.user.createdAt || ''));
+const hoursCreated = computed(() => parseHours(props.user.createdAt || ''));
+const yearUpdate = computed(() => parseYear(props.user.updatedAt || ''));
+const hoursUpdate = computed(() => parseHours(props.user.updatedAt || ''));
 const clientStore = useClientStore();
 
 const clickRemove = ():void=>{

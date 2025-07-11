@@ -1,35 +1,30 @@
 <script setup lang="ts">
-import {ref,watch} from 'vue';
+import {ref} from 'vue';
 import TheClientsHeadItem from '@/components/TheClientsHeadItem.vue'
 import TheClientsCard from '@/components/TheClientsCard.vue'
 
 import listhead from '@/composables/listHead.ts'
 import { useClientStore } from '@/stores/useStoreClient.ts'
-import { loadClients } from '@/api/apiClients.ts'
+
 import ModalNewClient from "@/components/Modals/ModalNewClient.vue";
 import ModalDeleteClient from "@/components/Modals/ModalDeleteClient.vue";
 import ModalEditClient from "@/components/Modals/ModalEditClient.vue";
 
 const clientStore = useClientStore();
 
-const loadUsers = async () => {
-  clientStore.clients.value = await loadClients();
-};
-
 const showForm = ref<boolean>(false);
-
 const closeForm = ():void=>{
   showForm.value = false
   clientStore.showDeleteForm = false
 }
 /* ОБСУДИ ЭТОТ МОМЕНТ С НЕЙРОНКОЙ*/
 const updateClients = ():void => {
-  setTimeout(loadUsers,100)
+  setTimeout(clientStore.loadUsers,100)
   clientStore.showDeleteForm = false
 }
 /* ОБСУДИ ЭТОТ МОМЕНТ С НЕЙРОНКОЙ*/
-loadUsers();
-
+clientStore.loadUsers();
+console.log(clientStore.sortedArray)
 </script>
 
 <template>
@@ -47,16 +42,16 @@ loadUsers();
             :user="item"
           />
         </ul>
-        <ul class="clients__cards sortedArray">
+        <ul class="clients__cards sortedArray" v-else-if="clientStore.sortedArray">
           <TheClientsCard
-            v-for="(item,index)  in clientStore.helpArr"
+            v-for="(item,index)  in clientStore.sortedArray"
             :key="index"
             :user="item"
           />
         </ul>
-        <ul class="clients__cards DEFAULT" >
+        <ul class="clients__cards DEFAULT" v-else>
           <TheClientsCard
-            v-for="(item,index) in clientStore.clients.value"
+            v-for="(item,index) in clientStore.clients"
             :key="index"
             :user="item"
           />

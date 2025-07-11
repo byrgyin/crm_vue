@@ -1,7 +1,7 @@
 import type {User} from '@/types/types.ts'
 
 /* METHOD GET */
-export const searchClient = async (value:string):Promise<User[]> =>{
+export const searchClient = async (value:string):Promise<User[] | undefined> =>{
   const opt = {
     method:'GET'
   }
@@ -17,7 +17,7 @@ export const searchClient = async (value:string):Promise<User[]> =>{
   }
 }
 
-export const loadClients = async ():Promise<User[]| undefined>=>{
+export const loadClients = async ():Promise<User[]|undefined>=>{
   try {
     const res = await fetch('http://localhost:3000/api/clients');
     if(res.ok){

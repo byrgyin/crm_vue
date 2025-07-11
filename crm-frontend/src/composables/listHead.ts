@@ -1,4 +1,4 @@
-import type HeadInfo from '@/types/types.ts'
+import type {HeadInfo} from '@/types/types.ts'
 
 const listHead: HeadInfo[] = [
   { typeButton: 'id', title: 'ID' },

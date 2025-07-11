@@ -1,3 +1,5 @@
+import type {User} from "@/types/types.ts";
+
 export const parseYear = (str:string):string=>{
   const date: Date = new Date(str);
   let day:number | string = date.getDate();
@@ -23,5 +25,36 @@ export const parseHours = (str:string):string=>{
     minutes = `0${minutes}`
   }
   return (`${hours}:${minutes}`);
+}
+
+export const sortFIO = (array:User[], activeClass:boolean):User[] => {
+  return [...array].sort((a, b) =>
+    activeClass ? b.surname.localeCompare(a.surname) : a.surname.localeCompare(b.surname)
+  );
+}
+
+export const sortID = (array:User[], activeClass:boolean):User[]=>{
+  return [...array].sort((a, b) =>
+    activeClass
+      ? (b.id || '').localeCompare(a.id || '')
+      : (a.id || '').localeCompare(b.id || '')
+  );
+}
+
+export const sortDateCreate = (array:User[], activeClass:boolean):User[]=>{
+  return [...array].sort((a, b) => {
+    const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+    const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+    return activeClass ? dateB - dateA : dateA - dateB;
+  });
+
+}
+
+export const sortLastModify = (array:User[], activeClass:boolean):User[] =>{
+  return [...array].sort((a, b) => {
+    const dateA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+    const dateB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+    return activeClass ? dateB - dateA : dateA - dateB;
+  });
 }
 

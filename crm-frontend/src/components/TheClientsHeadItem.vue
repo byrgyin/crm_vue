@@ -10,13 +10,9 @@ const clientStore = useClientStore();
 
 const sortItems = (event:Event): void => {
   const typeButton = props.headItem.typeButton;
-  document.querySelectorAll('.clients__item-button').forEach(button => {
-    button.classList.remove('clients__item-button--active');
-  });
-  (event.target as HTMLElement)?.classList.add('clients__item-button--active');
+  (event.target as HTMLElement)?.classList.toggle('clients__item-button--active');
   clientStore.sortType = typeButton as 'id' | 'fio' | 'date' | 'last_modify' | '';
-  clientStore.helpArr.value = clientStore.clients.value
-  console.log(clientStore.sortedArray)
+  clientStore.activeClass = (event.target as HTMLElement).classList.contains('clients__item-button--active');
 }
 </script>
 
