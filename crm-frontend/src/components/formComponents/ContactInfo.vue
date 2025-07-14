@@ -6,16 +6,19 @@ const props = defineProps<{
   index: number;
   contact?: Contact;
 }>();
-const emit = defineEmits<{
-  (e:'cancel:removeInfoItem'):void;
-  (e:'update:contact', contact: Contact): void;
-  (e:'removeOnIndex:editInfo', contact: Contact): void;
-}>();
 
 const contacts = ref<Contact>({
   type:'',
   value:''
 });
+
+const emit = defineEmits<{
+  (e:'cancel:removeInfoItem'):void;
+  (e:'update:contact', contact: Contact & { index: number }): void;
+  (e:'updateEdit:contact', contact: props.contact & { index: number }): void;
+  (e:'removeOnIndex:editInfo', contact: Contact & { index: number }): void;
+}>();
+
 
 const removeItem = ():void=>{
   emit('cancel:removeInfoItem');
@@ -26,7 +29,7 @@ const inputChange = ():void=>{
 };
 
 const updateItem = ():void=>{
-  emit('update:contact', { ...props.contact, index: props.index });
+  emit('updateEdit:contact', { ...props.contact, index: props.index });
 }
 const removeItemOnIndex = ():void=>{
   emit('removeOnIndex:editInfo', { ...contacts.value, index: props.index });
