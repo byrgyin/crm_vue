@@ -50,7 +50,7 @@ export const updateClient = async (obj:User,id:string):Promise<void>=>{
     headers:{'Content-Type':'application/json'}
   }
   try {
-    const res = await fetch(`http://localhost:3000/api/clients/${id}`,opt)
+    await fetch(`http://localhost:3000/api/clients/${id}`,opt)
   }catch (e){
     console.log(e)
   }

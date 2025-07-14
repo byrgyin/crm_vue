@@ -20,10 +20,10 @@ const confirmDeleteClient = () => {
   <div v-if="show" class="modal modal-remove">
     <div class="modal-remove__wrap">
       <button @click="cancelForm" class="modal__close"></button>
-      <div class="modal-remove__title">Удалить клиента</div>
-      <div class="modal-remove__subtitle">Вы действительно хотите удалить данного клиента?</div>
-      <button @click="confirmDeleteClient"  data-decision="yes" class="modal-remove__yes" type="button">Удалить</button>
-      <button @click="cancelForm" data-decision="no" class="modal-remove__no" type="button">Отмена </button>
+      <div class="modal-remove__title">Delete client</div>
+      <div class="modal-remove__subtitle">Do you really want to delete this client?</div>
+      <button @click="confirmDeleteClient" data-decision="yes" class="modal-remove__yes" type="button">Delete</button>
+      <button @click="cancelForm" data-decision="no" class="modal-remove__no" type="button">Cancel </button>
     </div>
   </div>
 </template>

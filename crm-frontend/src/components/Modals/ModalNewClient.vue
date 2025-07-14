@@ -61,7 +61,7 @@ const submitForm = (event:Event):void=>{
   <div v-if="show" class="modal modal-changedata">
     <form action="#" @submit.prevent="submitForm"  class="modal__form modal-new__form">
       <button @click="cancelForm" class="modal__close" type="button"></button>
-      <div class="modal__form-title">Новый клиент</div>
+      <div class="modal__form-title">New Client</div>
       <LabelInput v-model:input-value="surname" id="surname" title="Фамилия" type="text" placeholder="Фамилия" :required="true" />
       <LabelInput v-model:input-value="name" id="name" title="Имя" type="text" placeholder="Имя" :required="true" />
       <LabelInput v-model:input-value="lastname" id="lastName" title="Отчество" type="text" placeholder="Отчество" :required="false" />
@@ -75,10 +75,10 @@ const submitForm = (event:Event):void=>{
             @update:contact="updateContact"
           />
         </ul>
-        <button @click="incrementCount" v-show="count <= 9" class="modal__form-add-contacts"><img src="../../assets/addcontacnt.svg" alt="Добавить контакт">Добавить контакнт</button>
+        <button @click="incrementCount" v-show="count <= 9" class="modal__form-add-contacts"><img src="../../assets/addcontacnt.svg" alt="Добавить контакт">Add contact</button>
       </div>
-      <button type="submit" class="modal__form-submit">Сохранить</button>
-      <button @click="cancelForm" type="reset" class="modal__form-reset">Отмена</button>
+      <button type="submit" class="modal__form-submit">Save</button>
+      <button @click="cancelForm" type="reset" class="modal__form-reset">Cancel</button>
     </form>
   </div>
 </template>

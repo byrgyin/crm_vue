@@ -24,7 +24,6 @@ const updateClients = ():void => {
 }
 /* ОБСУДИ ЭТОТ МОМЕНТ С НЕЙРОНКОЙ*/
 clientStore.loadUsers();
-console.log(clientStore.sortedArray)
 </script>
 
 <template>
@@ -56,12 +55,8 @@ console.log(clientStore.sortedArray)
             :user="item"
           />
         </ul>
-
+        <button @click="showForm = !showForm" class="clients__button">Add Client</button>
       </div>
-      <button @click="showForm = !showForm" class="clients__button">
-        <img src="../assets/addclint.svg" alt="Добавить клиента" />
-        Добавить Клиента
-      </button>
     </div>
   </section>
   <Teleport to="body">
@@ -83,9 +78,15 @@ console.log(clientStore.sortedArray)
 </template>
 
 <style scoped>
+.clients__wrapper{
+  background: #25253F;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(0, 212, 255, 0.1);
+}
 .clients__title {
   margin: 0 0 26px;
-  color: #333;
+  color: #FFFFFF;
   font-size: 24px;
   font-weight: 700;
   line-height: normal;
@@ -140,18 +141,15 @@ console.log(clientStore.sortedArray)
   }
 }
 .clients__button {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 26px;
-  margin: 0 auto 0;
-  color: #9873ff;
+  display: block;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  width: fit-content;
+  color: #fff;
   text-align: center;
   font-size: 14px;
   font-weight: 600;
-  line-height: normal;
-  background: transparent;
-  border: 1px solid #9873ff;
   cursor: pointer;
 }
 </style>

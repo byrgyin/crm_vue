@@ -35,6 +35,7 @@ const inputValue = defineModel('inputValue')
   background: transparent;
   outline: none;
   border: none;
+  color: #fff;
   border-bottom: 1px solid #C8C5D1;
   text-transform: capitalize;
 }
@@ -48,7 +49,7 @@ const inputValue = defineModel('inputValue')
   position: absolute;
   top: 0;
   left: 0;
-  color: #B0B0B0;
+  color: #fff;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -56,7 +57,8 @@ const inputValue = defineModel('inputValue')
   transition: transform ease .4s;
 }
 .modal__label-span sup {
-  color: #9873FF;
+  color: #ff0000;
+  font-weight: bold;
 }
 .modal__warning {
   display: none;

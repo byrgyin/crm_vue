@@ -23,7 +23,7 @@ const sortItems = (event:Event): void => {
     <img class="clients__item-arrow" v-if="headItem.typeButton !== 'fio'" :src="arrow" alt="arrow">
     <span v-if="headItem.typeButton === 'fio'">
       <img class="clients__item-arrow" :src="arrow" alt="arrow">
-      <span>а-я</span>
+      <span>a-z</span>
     </span>
   </button>
   {{ !headItem.typeButton ? headItem.title : '' }}
@@ -34,15 +34,16 @@ const sortItems = (event:Event): void => {
 .clients__item,
 .clients__item button{
   display: block;
-  width: 104px;
+  width: fit-content;
   text-align: left;
-  color: #B0B0B0;
-  font-size: 12px;
+  color: #fff;
+  font-size: 16px;
   font-weight: 400;
   cursor: pointer;
+  background: transparent;
 }
 .clients__item span{
-  color: #9873FF;
+  color: #00D4FF;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;

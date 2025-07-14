@@ -39,7 +39,7 @@ const removeItemOnIndex = ():void=>{
     <div class="form-contacts__item-wrap">
       <select v-if="contact" @change="updateItem" v-model.trim="contact.type" name="choose-cotcants"
         id="choose-cotcants" class="form-contacts__select">
-        <option value="" disabled selected>Выберите тип</option>
+        <option value="" disabled selected>Choose Type<</option>
         <option value="телефон" selected>Телефон</option>
         <option value="email">Email</option>
         <option value="facebook">Facebook</option>
@@ -48,7 +48,7 @@ const removeItemOnIndex = ():void=>{
       </select>
       <select v-else @change="inputChange" v-model.trim="contacts.type" name="choose-cotcants"
               id="choose-cotcants" class="form-contacts__select">
-        <option value="" disabled selected>Выберите тип</option>
+        <option value="" disabled selected>Choose Type</option>
         <option value="телефон" selected>Телефон</option>
         <option value="email">Email</option>
         <option value="facebook">Facebook</option>
@@ -76,18 +76,21 @@ const removeItemOnIndex = ():void=>{
 .form-contacts__select {
   padding: 10px 12px;
   min-width: 137px;
-  background: #E7E5EB;
+  background: linear-gradient(45deg, #00D4FF, #007BFF);
   border: none;
   outline: none;
+  color: #FFFFFF;
   border-right: 1px solid #C8C5D1;
 }
 .form-contacts__select option {
   padding: 10px 12px;
-  background: #F4F3F6;
+  color: #FFFFFF;
+  background: #00D4FF;
 }
 .form-contacts__input {
   padding: 8px 12px;
   width: 100%;
+  color: #fff;
   background: transparent;
   outline: none;
   border: none;
@@ -102,7 +105,10 @@ const removeItemOnIndex = ():void=>{
   outline: none;
   border: none;
   border-left: 1px solid #C8C5D1;
-  background: #E7E5EB;
+  background: linear-gradient(45deg, #00D4FF, #007BFF);
   cursor: pointer;
+}
+.form-contacts__chest img{
+  filter: brightness(10);
 }
 </style>

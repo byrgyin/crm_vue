@@ -40,11 +40,11 @@ const openEditModal = ():void => {
     <TheClientCardContacnts
       v-if="user.contacts?.length"
       :contacts="user.contacts"/>
-    <span v-else>Конакты не указаны</span>
+    <span v-else>No contacts</span>
   </div>
   <div class="clients__card-item clients__card-item-actions">
-    <button @click="openEditModal" :data-id="user.id" class="clients__card-button"><img src="../assets/edit.svg" alt="изменить">Изменить</button>
-    <button @click="clickRemove" :data-id="user.id" class="clients__card-button"><img src="../assets/delete.svg" alt="изменить">Удалить</button>
+    <button @click="openEditModal" :data-id="user.id" class="clients__card-button">Edit</button>
+    <button @click="clickRemove" :data-id="user.id" class="clients__card-button">Delete</button>
   </div>
 </li>
 </template>
@@ -54,16 +54,22 @@ const openEditModal = ():void => {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   align-items: center;
-  padding: 10px 11px;
-  background: #FFF;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  background:#2E2E4E;
+  transition: transform 0.2s;
+}
+.clients__card:hover{
+  transform: translateY(-5px);
 }
 .clients__card-item{
   font-size: 14px;
   font-weight: 400;
-  color: #333;
+  color: #fff;
 }
 .clients__card-item-id {
-  color: #B0B0B0;
+  color: #FFFFFF;
   font-size: 12px;
 }
 .clients__card-item-fio{
@@ -71,11 +77,9 @@ const openEditModal = ():void => {
 }
 .clients__card-item-dt-create span:nth-child(2),
 .clients__card-item-lst-modify span:nth-child(2){
-  color: #B0B0B0;
+  color: #fff;
 }
-.clients__card:not(:last-child){
-  border-bottom: 1px solid #C8C5D1;
-}
+
 .clients__card-item-actions{
   display: flex;
   align-items: center;
@@ -87,6 +91,10 @@ const openEditModal = ():void => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
   transition: color ease .3s;
 }
 .clients__card-button img{
