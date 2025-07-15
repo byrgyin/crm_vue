@@ -94,7 +94,7 @@ button{
   margin: 0;
   border: none;
   outline: none;
-  color: #333;
+  color: #fff;
   background: transparent;
   font-size: 12px;
   font-style: normal;
@@ -156,12 +156,14 @@ button{
   padding: 22px 0 27px;
   width: 450px;
   max-height: 215px;
+  border-radius: 10px;
   text-align: center;
-  background: #FFFFFF;
+  background: #2E2E4E;
+  box-shadow: 1px 1px 20px -6px #FFFFFF;
 }
 .modal-remove__title {
   margin: 0 0 11px;
-  color: #333333;
+  color: #fff;
   font-size: 18px;
   font-weight: 700;
   line-height: normal;
@@ -169,7 +171,7 @@ button{
 .modal-remove__subtitle {
   margin: 0 auto 25px;
   width: 275px;
-  color: #333333;
+  color: #fff;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
